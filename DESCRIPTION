@@ -1,11 +1,17 @@
 Package: twoCrack
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: The Two-parameter Crack Distribution
+Version: 0.0.1
+Authors@R: c(
+    person("Wikanda", "Phaphan", email = "miji.hunter@gmail.com", role = c("cre","aut"))
+Description: Density, distribution function, and random generation for Two-parameter Crack (TwoCrack) distribution
+    with lambda and theta. Also, include density and random numbers generation of sub-distribution such as
+    Inverse Gaussian (IG), Length Biased Inverse Gaussian (LBIG), and Birnbaum-Saunders (BS)
+    distribution.
+License:-
+URL: https://github.com/wikanda-phaphan/twoCrack
+BugReports: https://github.com/wikanda-phaphan/twoCrack/issues
+Depends:
+    R (>= 3.6.0)
 Encoding: UTF-8
-LazyData: true
+LazyData: false
