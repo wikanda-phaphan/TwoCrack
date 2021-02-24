@@ -1,8 +1,8 @@
 #########put this value###############
-#n <- 30 #sample size
-#lambda <- 2
-#theta <- 2
-#X <- c(7,-2)
+n <- 30 #sample size
+lambda <- 2
+theta <- 2
+X <- c(7,-2)
 ############################################################
 #' @title The Two-parameter Crack Distribution
 #'
