@@ -1,27 +1,29 @@
 #########put this value###############
-n <- 30 #sample size
-lambda <- 2
-theta <- 2
-X <- c(7,-2)
+#n <- 30 #sample size
+#lambda <- 2
+#theta <- 2
+#X <- c(7,-2)
 ############################################################
-#install.packages("roxygen2")
-#install.packages("devtools")
-#install.packages("testthat")
-#install.packages("usethis")
-
-#install.packages("tidyverse")
-
-library(roxygen2) # In-Line Documentation for R 
-library(devtools) # Tools to Make Developing R Packages Easier
-library(testthat) # Unit Testing for R
-library(usethis)  # Automate Package and Project Setup
-
-#install.packages("available")
-#library(available)  # Check if the Title of a Package is Available
-# Check for potential names
-#available::suggest("Crack distribution")
-#available::available("TwoCrack", browse = FALSE)
-#available::available("overviewR", browse = FALSE)
+#' @title The Two-parameter Crack Distribution
+#'
+#' @description The two-parameter crack distribution is a positive skewness model, which is extensively used to model
+#' failure times of fatiguing materials. This distribution proposed by Saengthong and Bodhisuwan (2014).
+#'
+#' @param X vector of data
+#' @param n a number of observations
+#' @param lambda a value of the parameter lambda
+#' @param theta a value of the parameter theta
+#'
+#' @return ?
+#'
+#' @examples
+#' lambda <- 2
+#' theta <- 2
+#' X <- c(7,-2)
+#' dIG(X,lambda,theta)
+#' dLBIG(X,lambda,theta)
+#' dBS(X,theta,lambda)
+#' dTwoCrack(X,theta,lambda)
 
 ###############Pack TwoCrack distribution#####################
 
@@ -30,12 +32,12 @@ dIG=function(X,lambda,theta){
   nn<-length(X)
   p<-rep(0,nn)
   for (i in 1:nn) {
-    
-  if (X[c(i)]>0) {
-    p[c(i)]<-(lambda/(theta*sqrt(2*pi)))*((theta/X[c(i)])^(3/2))*exp(-0.5*(sqrt(X[c(i)]/theta)-(lambda*sqrt(theta/X[c(i)]))))
-  } else {
-    p[c(i)]<-0
-  }
+
+    if (X[c(i)]>0) {
+      p[c(i)]<-(lambda/(theta*sqrt(2*pi)))*((theta/X[c(i)])^(3/2))*exp(-0.5*(sqrt(X[c(i)]/theta)-(lambda*sqrt(theta/X[c(i)]))))
+    } else {
+      p[c(i)]<-0
+    }
   }
   return(p)
 }
@@ -47,7 +49,7 @@ dLBIG=function(X,lambda,theta)
   nn<-length(X)
   p<-rep(0,nn)
   for (i in 1:nn) {
-    
+
     if (X[c(i)]>0) {
       p[c(i)]<-(1/(theta*sqrt(2*pi)))*((theta/X[c(i)])^(1/2))*exp(-0.5*(sqrt(X[c(i)]/theta)-(lambda*sqrt(theta/X[c(i)]))))
     } else {
@@ -62,7 +64,7 @@ dBS=function(X,theta,lambda){
   nn<-length(X)
   p<-rep(0,nn)
   for (i in 1:nn) {
-    
+
     if (X[c(i)]>0) {
       p[c(i)]<-0.5*dIG(X[c(i)],theta,lambda)+0.5*dLBIG(X[c(i)],theta,lambda)
     } else {
@@ -77,7 +79,7 @@ dTwoCrack=function(X,theta,lambda){
   nn<-length(X)
   p<-rep(0,nn)
   for (i in 1:nn) {
-    
+
     if (X[c(i)]>0) {
       p[c(i)]<-(theta/(theta+1))*dIG(X[c(i)],theta,lambda)+(1/(theta+1))*dLBIG(X[c(i)],theta,lambda)
     } else {
@@ -85,42 +87,42 @@ dTwoCrack=function(X,theta,lambda){
     }
   }
   return(p)
-    }
-    
+}
+
 #dTwoCrack(X,theta,lambda)
 #########################the random generation=rTwoCrack############################################
 fM=function(X,lambda,theta){
-dTwoCrack(X,theta,lambda)/dBS(X,theta,lambda)
+  dTwoCrack(X,theta,lambda)/dBS(X,theta,lambda)
 }
 #fM(X,lambda,theta)
 
 ### BS-random numbers generation procedure=rBS ### 1 time
 rBS=function(n,lambda,theta)
 {
-alpha <- array(0,dim=c(n,1))
-BS <- array(0,dim=c(n,1))
+  alpha <- array(0,dim=c(n,1))
+  BS <- array(0,dim=c(n,1))
 
-for (i in 1:n){
-alpha[i,1]<- rnorm(1,0,1)
-BS[i,1] <- theta*(((alpha[i,1]/2)+sqrt(((alpha[i,1]^2)/4)+lambda))^2)
-}
-return(BS)
+  for (i in 1:n){
+    alpha[i,1]<- rnorm(1,0,1)
+    BS[i,1] <- theta*(((alpha[i,1]/2)+sqrt(((alpha[i,1]^2)/4)+lambda))^2)
+  }
+  return(BS)
 }
 #rBS(n,lambda,theta)
 
 ### TC-random numbers generation procedure=rTwoCrack ### 1 time
 rTwoCrack=function(n,lambda,theta)
 {
-M <-2*max((theta/(theta+1)),(1/(theta+1)))
-X=NULL
-while(length(X)<n){
-y=rBS(n*M,lambda,theta)
-u=runif(n*M,0,M)
-X=c(X,y[u<fM(y,lambda,theta)])
-}
-X=X[1:n]
-MGG<-matrix(X, ncol=1)
-return(MGG)
+  M <-2*max((theta/(theta+1)),(1/(theta+1)))
+  X=NULL
+  while(length(X)<n){
+    y=rBS(n*M,lambda,theta)
+    u=runif(n*M,0,M)
+    X=c(X,y[u<fM(y,lambda,theta)])
+  }
+  X=X[1:n]
+  MGG<-matrix(X, ncol=1)
+  return(MGG)
 }
 
 #X<-rTwoCrack(n,lambda,theta)
@@ -140,7 +142,7 @@ pTwoCrack=function(X,lambda,theta)
   nn<-length(X)
   p<-rep(0,nn)
   for (i in 1:nn) {
-    
+
     if (X[c(i)]>0) {
       Xx<-Xx(X[c(i)],lambda,theta)
       Xy<-Xy(X[c(i)],lambda,theta)
@@ -150,7 +152,7 @@ pTwoCrack=function(X,lambda,theta)
     }
   }
   return(p)
-      
+
 }
 #pTwoCrack(X,lambda,theta)
 
