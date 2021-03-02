@@ -1,9 +1,3 @@
-#########put this value###############
-n <- 30 #sample size
-lambda <- 2
-theta <- 2
-X <- c(7,-2)
-############################################################
 #' @title The Two-parameter Crack Distribution
 #'
 #' @description The two-parameter crack distribution is a positive skewness model, which is extensively used to model
@@ -24,9 +18,8 @@ X <- c(7,-2)
 #' dLBIG(X,lambda,theta)
 #' dBS(X,theta,lambda)
 #' dTwoCrack(X,theta,lambda)
-
+#'
 ###############Pack TwoCrack distribution#####################
-
 ##########################dTG################################
 dIG=function(X,lambda,theta){
   nn<-length(X)
