@@ -46,32 +46,39 @@ Density, distribution function, and random generation for Two-parameter Crack (T
 \details{
 \strong{Inverse Gaussian (IG) Distribution}
 Chikara and Folk (1978) studied the variables of the two-parameter inverse Gaussian distribution which is the continuous probability distribution. This package is interested in the inverse Gaussian distribution based on Ahmed et al. (2008).  Suppose X  is a random variable with an inverse Gaussian distribution. Consequently, a density function can be written in this formula:
+
 \code{fIG(x)=(lambda/(theta*sqrt(2*pi)))*((theta/x)^(3/2))*exp(-0.5*(sqrt(x/theta)-(lambda*sqrt(theta/x))))},
 where lambda, theta>0.
+
 The random numbers generation procedure of an inverse Gaussian distribution uses the composition method (Ngamkham, 2019).
 
 \strong{Length-Biased Inverse Gaussian (LBIG) distribution}
 Define X as a positive random variable with the length-biased inverse gaussian distribution. A density function can be written in this form:  
+
 \code{fLBIG=(1/(theta*sqrt(2*pi)))*((theta/X)^(1/2))*exp(-0.5*(sqrt(X/theta)-(lambda*sqrt(theta/X))))},
 where lambda, theta>0.
+
 Also, this package uses the composition method for the random numbers generation procedure proposed by Ngamkham (2019).
 
 \strong{Birnbaum-Saunders (BS) distribution}
 The Birnbaum-Sanders distribution was first introduced by Birnbaum and Saunders (1969) as a combination of inverse Gaussian distributions with a length-biased inverse Gaussian distribution. Later on, Ahmed et al. (2008) introduced a new parametrization of the Birnbaum-Saunders distribution. Consequently, the density function of the Birnbaum-Saunders distribution can be written in this form:
+
 \code{fBS(x)=0.5*dIG(X,theta,lambda)+0.5*dLBIG(X,theta,lambda)}, 
 where lambda, theta>0.
+
 This package simulating random numbers of the Birnbaum-Sanders distribution with the composition method (Ngamkham, 2019). 
  
 \strong{Two-parameter Crack (TwoCrack) distribution}
 The two-parameter crack distribution is a positive skewness model, which is extensively used to model failure times of fatiguing materials. This distribution proposed by Saengthong and Bodhisuwan (2014).  The two-parameter crack distribution has density:
+
 \code{fTwoCrack(x)=(theta/(theta+1))*dIG(X,theta,lambda)+(1/(theta+1))*dLBIG(X,theta,lambda)},
 where lambda, theta>0.
+
 Hence, we recommend the acceptance-rejection method for the random numbers generation procedure proposed by Phaphan and Pongsart (2019).
 
 }
 
 \examples{
-
 #install.packages("devtools")
 library(devtools)
 #install_github("wikanda-phaphan/twoCrack")
@@ -123,7 +130,6 @@ X4<-rLBIG(n,lambda,theta)
 [3,]  6.615517
 [4,]  6.181410
 [5,] 11.132937
-
 }
 
 \references{
