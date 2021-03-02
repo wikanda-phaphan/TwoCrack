@@ -6,8 +6,8 @@ dTwoCrack(X,lambda,theta)
 pTwoCrack(X,lambda,theta)
 rTwoCrack(n,lambda,theta)
 
-dBs(X,lambda,theta)
-rBs(n,lambda,theta)
+dBS(X,lambda,theta)
+rBS(n,lambda,theta)
 
 dIG(X,lambda,theta)
 rIG(n,lambda,theta)
