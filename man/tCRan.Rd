@@ -43,10 +43,6 @@ rLBIG(n,lambda,theta)
 Density, distribution function, and random generation for Two-parameter Crack (TwoCrack) distribution with lambda and theta. Also, include density and random numbers generation of sub-distribution such as Inverse Gaussian (IG), Length Biased Inverse  Gaussian (LBIG), and Birnbaum-Saunders (BS) distribution.
 }
 
-\depends{
-R (>= 3.6.1) 
-}
-
 \details{
 \strong{Inverse Gaussian (IG) Distribution}
 
