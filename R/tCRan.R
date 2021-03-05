@@ -14,10 +14,15 @@
 #' lambda <- 2
 #' theta <- 2
 #' X <- c(7,-2)
+#' dTwoCrack(X,lambda,theta)
+#' pTwoCrack(X,lambda,theta)
+#' rTwoCrack(n,lambda,theta)
+#' dBS(X,lambda,theta)
+#' rBS(n,lambda,theta)
 #' dIG(X,lambda,theta)
+#' rIG(n,lambda,theta)
 #' dLBIG(X,lambda,theta)
-#' dBS(X,theta,lambda)
-#' dTwoCrack(X,theta,lambda)
+#' rLBIG(n,lambda,theta)
 #'
 ###############Pack TwoCrack distribution#####################
 ##########################dTG################################
@@ -34,7 +39,6 @@ dIG=function(X,lambda,theta){
   }
   return(p)
 }
-#dIG(X,lambda,theta)
 
 ##################################dLBIG####################
 dLBIG=function(X,lambda,theta)
@@ -51,9 +55,9 @@ dLBIG=function(X,lambda,theta)
   }
   return(p)
 }
-#dLBIG(X,lambda,theta)
-#########################dBS########################
-dBS=function(X,theta,lambda){
+
+#########################dBS#########edite to (X,lambda,theta) ###############
+dBS=function(X,lambda,theta){
   nn<-length(X)
   p<-rep(0,nn)
   for (i in 1:nn) {
@@ -66,9 +70,9 @@ dBS=function(X,theta,lambda){
   }
   return(p)
 }
-#dBS(X,theta,lambda)
-############################the probability density function =dTwoCrack############################################
-dTwoCrack=function(X,theta,lambda){
+
+############################the probability density function =dTwoCrack########edite to (X,lambda,theta)################################
+dTwoCrack=function(X,lambda,theta){
   nn<-length(X)
   p<-rep(0,nn)
   for (i in 1:nn) {
@@ -82,12 +86,10 @@ dTwoCrack=function(X,theta,lambda){
   return(p)
 }
 
-#dTwoCrack(X,theta,lambda)
 #########################the random generation=rTwoCrack############################################
 fM=function(X,lambda,theta){
   dTwoCrack(X,theta,lambda)/dBS(X,theta,lambda)
 }
-#fM(X,lambda,theta)
 
 ### BS-random numbers generation procedure=rBS ### 1 time
 rBS=function(n,lambda,theta)
@@ -101,7 +103,6 @@ rBS=function(n,lambda,theta)
   }
   return(BS)
 }
-#rBS(n,lambda,theta)
 
 ### TC-random numbers generation procedure=rTwoCrack ### 1 time
 rTwoCrack=function(n,lambda,theta)
@@ -118,18 +119,15 @@ rTwoCrack=function(n,lambda,theta)
   return(MGG)
 }
 
-#X<-rTwoCrack(n,lambda,theta)
 #####################the distribution function =pTwoCrack#########################
 Xx=function(X,lambda,theta)
 {
   sqrt(X/theta)+(lambda*sqrt(theta/X))
 }
-#Xx<-Xx(X,lambda,theta)
 Xy=function(X,lambda,theta)
 {
   sqrt(X/theta)-(lambda*sqrt(theta/X))
 }
-#Xy<-Xy(X,lambda,theta)
 pTwoCrack=function(X,lambda,theta)
 {
   nn<-length(X)
@@ -147,7 +145,6 @@ pTwoCrack=function(X,lambda,theta)
   return(p)
 
 }
-#pTwoCrack(X,lambda,theta)
 
 
 ### IG-random numbers generation procedure ### 1 time = rIG
@@ -170,10 +167,8 @@ rIG=function(n,lambda,theta)
       IG[i,1]=(lambda^2)*(theta^2)/u[i,1]
     }
   }
-  #return(list(IG,u,alpha))
   return(IG)
 }
-#X<-rIG(n,lambda,theta)
 
 ### LBIG-random numbers generation procedure ### 1 time = rLBIG
 rLBIG=function(n,lambda,theta)
@@ -198,7 +193,6 @@ rLBIG=function(n,lambda,theta)
     }
     LBIG[i,1]=IG[i,1]+(theta*(alpha0[i,1]^2))
   }
-  #return(list(LBIG, IG,u,alpha))
   return(LBIG)
 }
-#X<-rLBIG(n,lambda,theta)
+
