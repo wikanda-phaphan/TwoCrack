@@ -22,25 +22,29 @@ rLBIG(n,lambda,theta)
 \item{theta}{a value of the parameter theta.}   
 }
 \value{
-\strong{Two-parameter Crack (TwoCrack) distribution}
+\strong{Two-parameter Crack (TwoCrack) Distribution}
 \item{dTwoCrack}{gives the density of Two-parameter Crack distribution}
 \item{pTwoCrack}{gives the distribution function of Two-parameter Crack distribution}
 \item{rTwoCrack}{generates random numbers of Two-parameter Crack distribution}
 
-\strong{Birnbaum-Saunders (BS) distribution}
+\strong{Birnbaum-Saunders (BS) Distribution}
 \item{dBs}{gives the density of Birnbaum-Saunders distribution}
 \item{rBs}{generates random numbers of Birnbaum-Saunders distribution}
 
 \strong{Inverse Gaussian (IG) Distribution}
-\item{dIG}{gives the density of Inverse Gaussian Distribution}
-\item{rIG}{generates random numbers of Inverse Gaussian Distribution}
+\item{dIG}{gives the density of Inverse Gaussian distribution}
+\item{rIG}{generates random numbers of Inverse Gaussian distribution}
 
-\strong{Length-Biased Inverse Gaussian (LBIG) distribution}
-\item{dLBIG}{gives the density of Length-Biased Inverse Gaussian distribution}
+\strong{Length-Biased Inverse Gaussian (LBIG) Distribution}
+\item{dLBIG}{gives the density of Length-Biased Inverse Gaussian  distribution}
 \item{rLBIG}{generates random numbers of Length-Biased Inverse Gaussian distribution}
 }
 \description{
 Density, distribution function, and random generation for Two-parameter Crack (TwoCrack) distribution with lambda and theta. Also, include density and random numbers generation of sub-distribution such as Inverse Gaussian (IG), Length Biased Inverse  Gaussian (LBIG), and Birnbaum-Saunders (BS) distribution.
+}
+
+\depends{
+R (>= 3.6.1) 
 }
 
 \details{
@@ -53,16 +57,16 @@ where lambda, theta>0.
 
 The random numbers generation procedure of an inverse Gaussian distribution uses the composition method (Ngamkham, 2019).
 
-\strong{Length-Biased Inverse Gaussian (LBIG) distribution}
+\strong{Length-Biased Inverse Gaussian (LBIG) Distribution}
 
-Define X as a positive random variable with the length-biased inverse gaussian distribution. A density function can be written in this form:  
+Define X as a positive random variable with the length-biased inverse Gaussian distribution. A density function can be written in this form:  
 
 \code{fLBIG=(1/(theta*sqrt(2*pi)))*((theta/X)^(1/2))*exp(-0.5*(sqrt(X/theta)-(lambda*sqrt(theta/X))))},
 where lambda, theta>0.
 
 Also, this package uses the composition method for the random numbers generation procedure proposed by Ngamkham (2019).
 
-\strong{Birnbaum-Saunders (BS) distribution}
+\strong{Birnbaum-Saunders (BS) Distribution}
 
 The Birnbaum-Sanders distribution was first introduced by Birnbaum and Saunders (1969) as a combination of inverse Gaussian distributions with a length-biased inverse Gaussian distribution. Later on, Ahmed et al. (2008) introduced a new parametrization of the Birnbaum-Saunders distribution. Consequently, the density function of the Birnbaum-Saunders distribution can be written in this form:
 
@@ -71,7 +75,7 @@ where lambda, theta>0.
 
 This package simulating random numbers of the Birnbaum-Sanders distribution with the composition method (Ngamkham, 2019). 
  
-\strong{Two-parameter Crack (TwoCrack) distribution}
+\strong{Two-parameter Crack (TwoCrack) Distribution}
 
 The two-parameter crack distribution is a positive skewness model, which is extensively used to model failure times of fatiguing materials. This distribution proposed by Saengthong and Bodhisuwan (2014).  The two-parameter crack distribution has density:
 
